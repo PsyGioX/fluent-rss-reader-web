@@ -210,8 +210,8 @@ This project is open source and available under the MIT License.
 
 ## 📞 Contact
 
-- **Developer**: SerGio Play Dev
-- **Website**: [sergioplay-dev.netlify.app](https://sergioplay-dev.vercel.app/)
+- **Developer**: PsyGioX
+- **Website**: [sergioplay-dev.netlify.app](https://psygiox-dev.vercel.app/)
 - **Version**: 2.0.0
 - **Year**: 2025
 
