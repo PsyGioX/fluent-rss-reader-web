@@ -1,5 +1,0 @@
-<div class="social-links">
-                <a href="https://t.me/fluentrss" target="_blank">✈️</a>
-                <a href="https://vk.com/fluentrss" target="_blank">🌐</a>
-                <a href="https://twitter.com/fluentrss" target="_blank">🐦</a>
-            </div>

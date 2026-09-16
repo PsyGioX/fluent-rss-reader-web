@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fluent RSS Reader — легка читалка RSS-стрічок без реєстрації</title>
+<meta name="description" content="Безкоштовний RSS-агрегатор: додавайте будь-які RSS, Atom і JSON-стрічки, розкладайте по категоріях, імпортуйте OPML і читайте офлайн. Пастельний інтерфейс і темна тема.">
+<meta name="keywords" content="rss читалка, rss агрегатор, читання новин, opml імпорт, стрічка новин, безкоштовний feed reader">
+<meta name="author" content="PsyGioX">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+<meta name="yandex" content="index, follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#fbfafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17151d" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Fluent RSS">
+<meta name="yandex-verification" content="d3afa32d7eb50e33">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; frame-src https:; base-uri 'self'; form-action 'self'">
+
+<link rel="canonical" href="https://fluent-rss-reader-web.vercel.app/uk/">
+<link rel="alternate" hreflang="ru" href="https://fluent-rss-reader-web.vercel.app/">
+<link rel="alternate" hreflang="en" href="https://fluent-rss-reader-web.vercel.app/en/">
+<link rel="alternate" hreflang="uk" href="https://fluent-rss-reader-web.vercel.app/uk/">
+<link rel="alternate" hreflang="pl" href="https://fluent-rss-reader-web.vercel.app/pl/">
+<link rel="alternate" hreflang="cs" href="https://fluent-rss-reader-web.vercel.app/cs/">
+<link rel="alternate" hreflang="bg" href="https://fluent-rss-reader-web.vercel.app/bg/">
+<link rel="alternate" hreflang="sr" href="https://fluent-rss-reader-web.vercel.app/sr/">
+<link rel="alternate" hreflang="x-default" href="https://fluent-rss-reader-web.vercel.app/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Fluent RSS Reader">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="pl_PL">
+<meta property="og:locale:alternate" content="cs_CZ">
+<meta property="og:locale:alternate" content="bg_BG">
+<meta property="og:locale:alternate" content="sr_RS">
+<meta property="og:title" content="Fluent RSS Reader — легка читалка RSS">
+<meta property="og:description" content="Безкоштовний RSS-агрегатор: додавайте будь-які RSS, Atom і JSON-стрічки, розкладайте по категоріях, імпортуйте OPML і читайте офлайн. Пастельний інтерфейс і темна тема.">
+<meta property="og:url" content="https://fluent-rss-reader-web.vercel.app/uk/">
+<meta property="og:image" content="https://fluent-rss-reader-web.vercel.app/preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Fluent RSS Reader — легка читалка RSS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fluent RSS Reader — легка читалка RSS">
+<meta name="twitter:description" content="Безкоштовний RSS-агрегатор: додавайте будь-які RSS, Atom і JSON-стрічки, розкладайте по категоріях, імпортуйте OPML і читайте офлайн. Пастельний інтерфейс і темна тема.">
+<meta name="twitter:image" content="https://fluent-rss-reader-web.vercel.app/preview.jpg">
+
+<link rel="manifest" href="/manifest.uk.json">
+<link rel="icon" href="/favicon/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon/favicon-32x32.png" type="image/png">
+<link rel="apple-touch-icon" href="/favicon/apple-icon-180x180.png">
+<link rel="preload" as="style" href="/styles.6d0ce833.min.css">
+<link rel="preload" as="style" href="/vendor/bootstrap-icons/bootstrap-icons.443e0f12.min.css">
+<link rel="preload" as="script" href="/app.27fbbae7.min.js">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://fluent-rss-reader-web.vercel.app/#app","name":"Fluent RSS Reader","url":"https://fluent-rss-reader-web.vercel.app/uk/","inLanguage":"uk","applicationCategory":"NewsApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Безкоштовний RSS-агрегатор: додавайте будь-які RSS, Atom і JSON-стрічки, розкладайте по категоріях, імпортуйте OPML і читайте офлайн. Пастельний інтерфейс і темна тема.","image":"https://fluent-rss-reader-web.vercel.app/preview.jpg","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["RSS, Atom, JSON Feed","OPML import and export","Offline reading","Categories","Dark theme","7 interface languages"],"author":{"@type":"Person","name":"PsyGioX"}},{"@type":"WebSite","@id":"https://fluent-rss-reader-web.vercel.app/#website","url":"https://fluent-rss-reader-web.vercel.app/","name":"Fluent RSS Reader","inLanguage":"uk","potentialAction":{"@type":"SubscribeAction","target":"https://fluent-rss-reader-web.vercel.app/?feed={feed_url}","query-input":"required name=feed_url"}},{"@type":"FAQPage","@id":"https://fluent-rss-reader-web.vercel.app/uk/#faq","inLanguage":"uk","mainEntity":[{"@type":"Question","name":"Чи потрібна реєстрація?","acceptedAnswer":{"@type":"Answer","text":"Ні. Стрічки зберігаються у браузері."}},{"@type":"Question","name":"Чи можна перенести підписки?","acceptedAnswer":{"@type":"Answer","text":"Так, підтримується імпорт та експорт OPML."}},{"@type":"Question","name":"Чи працює офлайн?","acceptedAnswer":{"@type":"Answer","text":"Так, останні завантажені матеріали доступні без мережі."}}]}]}</script>
+<link rel="stylesheet" href="/vendor/bootstrap-icons/bootstrap-icons.443e0f12.min.css">
+<link rel="stylesheet" href="/styles.6d0ce833.min.css">
+</head>
+
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<div class="app">
+  <!-- ЛЕВАЯ КОЛОНКА -->
+  <aside class="rail" id="rail" aria-label="Ленты">
+    <div class="rail__head">
+      <span class="brand">
+        <span class="brand__mark" aria-hidden="true">
+          <i class="brand__glyph bi bi-rss" aria-hidden="true"></i>
+        </span>
+        <span>
+          <span class="brand__name">Fluent RSS</span><br>
+          <span class="brand__sub" id="feedStat">0 лент</span>
+        </span>
+      </span>
+      <button class="btn btn--icon btn--quiet only-mobile" id="closeRail" aria-label="Закрыть меню" style="margin-left:auto">
+        <i class="icon bi bi-x-lg" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class="rail__body">
+      <div class="rail__section">
+        <div class="rail__label"><span data-i18n="all_categories">Все ленты</span><span class="rail__count" id="allCount">0</span></div>
+        <div class="list" id="feedList"></div>
+      </div>
+    </div>
+
+    <div class="rail__foot">
+      <button class="btn btn--tiny" id="btnRecommend" data-i18n-title="recommendations">
+        <i class="icon bi bi-stars" aria-hidden="true"></i>
+        <span data-i18n="recommendations">Подборки</span>
+      </button>
+      <button class="btn btn--tiny" id="btnLibrary">
+        <i class="icon bi bi-list-ul" aria-hidden="true"></i>
+        <span data-i18n="feed_management_title">Ленты</span>
+      </button>
+      <button class="btn btn--tiny" id="btnFiles">
+        <i class="icon bi bi-file-earmark-arrow-down" aria-hidden="true"></i>
+        <span>OPML</span>
+      </button>
+      <button class="btn btn--tiny" id="btnTheme" data-i18n-title="toggle_theme">
+        <i class="icon bi bi-moon-stars" id="themeIcon" aria-hidden="true"></i>
+        <span data-i18n="theme">Тема</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ПРАВАЯ КОЛОНКА -->
+  <main class="main">
+    <header class="topbar">
+      <button class="btn btn--icon btn--quiet only-mobile" id="openRail" aria-label="Открыть ленты">
+        <i class="icon bi bi-list" aria-hidden="true"></i>
+      </button>
+
+      <form class="composer" id="composer" autocomplete="off">
+        <span class="composer__icon" aria-hidden="true">
+          <i class="icon bi bi-rss" aria-hidden="true"></i>
+        </span>
+        <label class="sr-only" for="rssUrl" data-i18n="rss_url_label">Адрес RSS-ленты</label>
+        <input id="rssUrl" type="text" inputmode="url" spellcheck="false"
+               placeholder="Вставьте ссылку на сайт или RSS…" data-i18n-placeholder="rss_url_placeholder">
+        <label class="sr-only" for="categorySelect" data-i18n="category_label">Категория</label>
+        <select id="categorySelect"></select>
+        <button class="btn btn--primary btn--tiny" type="submit" id="btnAdd" data-i18n="add_feed_btn">Добавить</button>
+      </form>
+
+      <button class="btn btn--icon" id="btnRefresh" data-i18n-title="refresh" aria-label="Обновить">
+        <i class="icon bi bi-arrow-clockwise" aria-hidden="true"></i>
+      </button>
+      <select id="languageSelect" class="btn btn--tiny" aria-label="Язык" style="width:auto"></select>
+    </header>
+
+    <div class="feed-head">
+      <div>
+        <h1 class="feed-head__title" id="feedTitle">Fluent RSS Reader</h1>
+        <p class="feed-head__meta" id="feedMeta" data-i18n="no_feeds_message">Усі ваші стрічки в одному спокійному місці</p>
+      </div>
+      <div class="segmented" id="sortSwitch" role="group">
+        <button type="button" data-sort="date" aria-pressed="true">По дате</button>
+        <button type="button" data-sort="title" aria-pressed="false">По названию</button>
+      </div>
+    </div>
+
+    <div class="chips" id="chips"></div>
+    <div id="content"></div>
+  </main>
+</div>
+
+<!-- МОБИЛЬНАЯ НАВИГАЦИЯ -->
+<nav class="mobilebar" aria-label="Навигация">
+  <button id="mobFeeds"><i class="icon bi bi-list" aria-hidden="true"></i><span data-i18n="menu">Ленты</span></button>
+  <button id="mobRefresh"><i class="icon bi bi-arrow-clockwise" aria-hidden="true"></i><span data-i18n="refresh">Обновить</span></button>
+  <button id="mobRecommend"><i class="icon bi bi-stars" aria-hidden="true"></i><span data-i18n="recommendations">Подборки</span></button>
+  <button id="mobTop"><i class="icon bi bi-arrow-up" aria-hidden="true"></i><span data-i18n="scroll_top">Наверх</span></button>
+</nav>
+
+<!-- УНИВЕРСАЛЬНЫЙ ОВЕРЛЕЙ -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="sheet" id="sheet">
+    <div class="grabber"></div>
+    <div class="sheet__head">
+      <h2 class="sheet__title" id="sheetTitle"></h2>
+      <div id="sheetTools" style="display:flex;gap:6px"></div>
+      <button class="btn btn--icon btn--quiet" id="sheetClose" data-i18n-title="close" aria-label="Закрыть">
+        <i class="icon bi bi-x-lg" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="sheet__body" id="sheetBody"></div>
+    <div class="sheet__foot" id="sheetFoot" hidden></div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+<input type="file" id="fileInput" accept=".opml,.xml,.json,text/xml,application/json" hidden>
+
+<script src="/i18n.b8beb673.min.js" defer></script>
+<script src="/feeds-catalog.490ba25c.min.js" defer></script>
+<script src="/app.27fbbae7.min.js" defer></script>
+</body>
+</html>

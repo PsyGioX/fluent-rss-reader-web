@@ -1,222 +1,86 @@
-# 🌟 Fluent RSS Reader
+# Fluent RSS Reader 2.0
 
-**The #1 RSS Reader with Multilingual Support and Liquid Glass Design**
+Пастельный, «пиксель-перфект» RSS-агрегатор. Фронтенд без сборки + serverless-бэкенд на Vercel.
 
-A modern, responsive RSS reader that supports English and Slavic languages with a beautiful liquid glass aesthetic. Built as a Progressive Web App (PWA) for seamless cross-platform experience.
+## Что изменилось по сравнению с 1.x
 
-![Fluent RSS Reader](hbubh.png)
+**Дизайн**
+- Новая пастельная система токенов (лаванда, мята, абрикос, роза, небо, лимон), сетка 4 px, хайрлайны 1 px, тени только у плавающих слоёв.
+- Каждая лента получает стабильный пастельный цвет по хешу домена — он ведёт от корешка в списке до карточки и «шита» статьи.
+- Светлая и тёмная темы, `prefers-reduced-motion`, видимый фокус, печать, safe-area на iOS.
+- Один универсальный «шит» вместо пяти разных модалок: статья, библиотека, подборки, OPML.
 
-## ✨ Features
+**RSS**
+- Загрузка и разбор перенесены на сервер (`/api/feed`) — больше никаких `allorigins` / `cors-anywhere`.
+- `rss-parser` понимает RSS 0.9x/2.0, Atom, RDF; JSON Feed обрабатывается отдельной веткой.
+- `iconv-lite` корректно декодирует `windows-1251` и другие кодировки (важно для многих русских лент).
+- `sanitize-html` чистит HTML статьи от скриптов, трекеров и inline-стилей; относительные картинки превращаются в абсолютные.
+- Ретраи с экспоненциальной паузой, таймауты, LRU-кеш в инстансе + CDN-кеш (`s-maxage=300`).
+- Защита от SSRF: приватные диапазоны и localhost блокируются.
 
-### 🌍 Multilingual Support
-- **7 Languages**: Russian, English, Ukrainian, Polish, Czech, Bulgarian, Serbian
-- **Smart Language Detection**: Automatically detects user's preferred language
-- **Real-time Language Switching**: Change language without page reload
+**Ссылки и файлы**
+- `/api/discover` (cheerio) находит ленту по адресу обычного сайта: `<link rel="alternate">`, затем перебор популярных путей. Если лент несколько — приложение предлагает выбрать.
+- `/api/opml` (fast-xml-parser) импортирует и экспортирует OPML, включая вложенные категории; поддерживается и JSON-бэкап версии 1.x.
+- Импорт через drag&drop или выбор файла, дубликаты пропускаются.
+- Данные старой версии (`rssFeeds`, `feedNames`, `feedCategories`) мигрируют автоматически при первом запуске.
+- Офлайн: снимок последней удачной загрузки в localStorage + service worker (кеш-оболочка, сеть-впереди для API).
 
-### 🎨 Liquid Glass Design
-- **Modern Glassmorphism**: Beautiful frosted glass effects with backdrop blur
-- **Adaptive Themes**: Light, dark, and system-based theme switching
-- **Smooth Animations**: Fluid transitions and micro-interactions
-- **Responsive Layout**: Perfect on desktop, tablet, and mobile devices
+Сохранены: 7 языков интерфейса (151 ключ) и каталог рекомендуемых лент из 8 категорий.
 
-### 📱 Progressive Web App
-- **Offline Support**: Read cached articles without internet
-- **Install Anywhere**: Works on any device with a modern browser
-- **Push Notifications**: Get notified about new articles (coming soon)
-- **Fast Loading**: Optimized performance with service worker caching
+**Иконки**
+- Эмодзи из интерфейса убраны полностью: категории каталога (`🌍 Мировые новости` → `Мировые новости`), флаги стран в подборках и `❤️` в подписи футера.
+- Вместо них — Bootstrap Icons из npm-пакета: шрифт копируется в `public/vendor/bootstrap-icons/` и раздаётся со своего домена, поэтому CSP остаётся `font-src 'self'`, без обращений к CDN.
+- Inline-SVG в разметке тоже заменены на классы `bi-*` — так иконки наследуют цвет и размер от кнопки.
+- Сборка оставляет в CSS только реально используемые классы (сейчас их около двадцати вместо примерно двух тысяч) и добавляет `font-display: swap`.
+- Соответствие «категория → иконка» лежит в `window.CATEGORY_ICONS` в конце `src/feeds-catalog.js` — правится одной строкой.
 
-### 🔍 Advanced Features
-- **Smart Search**: Search across all articles in real-time
-- **Category Management**: Organize feeds by custom categories
-- **Feed Management**: Easy add, edit, delete, and share feeds
-- **Multiple View Modes**: Normal article view and embedded web page view
-- **Social Sharing**: Share articles across multiple platforms
-- **Feed Sharing**: Share feed subscriptions with friends
+**Сборка и минификация**
+- `scripts/build.mjs` минифицирует CSS и JS через esbuild и кладёт результат в `public/` под именем с хешем содержимого (`app.5c6eacc2.min.js`). Страницы подключают только минифицированные версии.
+- Хеш в имени позволяет отдавать эти файлы с `Cache-Control: immutable` на год — при следующем деплое имя меняется само.
+- Service worker получает точный список файлов сборки и версию кеша из того же хеша, поэтому старые кеши сбрасываются автоматически.
+- Если esbuild почему-то не установился, сборка не падает: файлы копируются без минификации.
 
-### 📊 Feed Support
-- **RSS 2.0**: Full support for RSS feeds
-- **Atom**: Compatible with Atom feeds
-- **Media Content**: Display images and videos from feeds
-- **Rich Content**: Support for full article content and descriptions
-- **Date Sorting**: Articles sorted by publication date
+**SEO**
+- Отдельная статическая страница на каждый из 7 языков: `/` (ru), `/en/`, `/uk/`, `/pl/`, `/cs/`, `/bg/`, `/sr/` — со своими title, description, keywords и Open Graph.
+- Полный перекрёстный `hreflang` + `x-default` на каждой странице и в `sitemap.xml` (через `xhtml:link`).
+- `canonical` на каждой странице, `og:locale` и `og:locale:alternate` по языкам.
+- JSON-LD `@graph`: `WebApplication` (с `featureList` и `offers`), `WebSite` с `SubscribeAction`, и `FAQPage` с локализованными вопросами.
+- Локализованный `manifest.<lang>.json` со своим `name`, `description` и `start_url`.
+- `robots.txt` с `Sitemap`, `Host` и `Clean-param: feed&lang` для Яндекса; `/api/` закрыт от индексации.
+- Переключение языка ведёт на канонический адрес версии, а не меняет параметр в URL.
 
-## 🚀 Getting Started
+## Структура
 
-### Quick Start
-1. Open the application in your browser
-2. Select your preferred language from the dropdown
-3. Add your first RSS feed URL
-4. Start reading!
+```
+src/            исходники фронтенда (шаблон index.html с токенами {{…}})
+scripts/
+  build.mjs     минификация, генерация страниц, sitemap, robots, манифесты
+  seo.mjs       заголовки, описания и FAQ для каждого языка
+api/            serverless-функции Node 20 (ESM)
+  _lib.js       fetch с ретраями, определение кодировки, sanitize, кеш
+  feed.js       GET /api/feed?url=…       → нормализованный JSON ленты
+  discover.js   GET /api/discover?url=…   → найденные ленты сайта
+  opml.js       POST /api/opml            → импорт/экспорт OPML
+public/         результат сборки (в git не хранится)
+vercel.json     заголовки, кеширование, лимиты функций
+```
 
-### Adding Feeds
-1. Paste any RSS feed URL into the input field
-2. Select a category (optional)
-3. Click "Add" to subscribe
-4. The feed will appear in your tabs
+## Запуск и деплой
 
-### Managing Categories
-1. Click "Add Category" to create custom categories
-2. Organize your feeds by topic, source, or preference
-3. Filter feeds by category using the dropdown
+```bash
+npm install
+npm run build    # минификация + генерация языковых страниц → public/
+npm run preview  # собрать и поднять статику локально
+npm run dev      # сборка + vercel dev (со serverless-функциями)
+npm run deploy   # vercel --prod
+```
 
-## 🛠️ Technical Details
+Переменные окружения не нужны. На Vercel `buildCommand` из `vercel.json` запускает сборку сам,
+`public/` раздаётся как статика, `api/` — как функции.
 
-### Built With
-- **Vanilla JavaScript**: No frameworks, pure performance
-- **Modern CSS**: CSS Grid, Flexbox, CSS Variables
-- **Service Worker**: Offline functionality and caching
-- **Web APIs**: Fetch, LocalStorage, Clipboard, Notifications
+Домен задан в `scripts/seo.mjs` (константа `SITE`) — поменяйте его при переезде на свой адрес,
+иначе canonical и sitemap будут указывать на старый.
 
-### Browser Support
-- Chrome/Edge 80+
-- Firefox 75+
-- Safari 13+
-- Mobile browsers with PWA support
+## Горячие клавиши
 
-### Performance
-- **Lazy Loading**: Images and videos load on demand
-- **Efficient Caching**: Smart caching strategy for optimal performance
-- **Minimal Bundle**: Lightweight codebase for fast loading
-- **Responsive Images**: Optimized media loading
-
-## 🎯 Use Cases
-
-### Personal News Reading
-- Subscribe to your favorite news sources
-- Organize feeds by topics (Tech, Sports, Politics, etc.)
-- Read articles in your preferred language
-
-### Professional Monitoring
-- Track industry news and updates
-- Monitor competitor blogs and announcements
-- Stay updated with technology trends
-
-### Content Curation
-- Collect articles from multiple sources
-- Share interesting feeds with colleagues
-- Build a personal knowledge base
-
-### Multilingual Content
-- Read content in multiple Slavic languages
-- Perfect for language learning
-- Support for international news sources
-
-## 🔧 Advanced Configuration
-
-### Custom Categories
-Create categories that match your interests:
-- Technology & Programming
-- Business & Finance
-- Health & Lifestyle
-- Entertainment & Media
-- Science & Research
-
-### Feed Organization
-- Rename feeds for better identification
-- Move feeds between categories
-- Delete unused subscriptions
-- Share feed URLs with others
-
-### Theme Customization
-- **Light Theme**: Perfect for daytime reading
-- **Dark Theme**: Easy on the eyes for night reading
-- **System Theme**: Automatically matches your device settings
-
-## 🌐 Supported Languages
-
-| Language | Code | Native Name |
-|----------|------|-------------|
-| Russian | ru | Русский |
-| English | en | English |
-| Ukrainian | uk | Українська |
-| Polish | pl | Polski |
-| Czech | cs | Čeština |
-| Bulgarian | bg | Български |
-| Serbian | sr | Srpski |
-
-## 📱 Installation
-
-### As PWA
-1. Open the app in your browser
-2. Look for the "Install App" button in the bottom navigation
-3. Click to install as a native app
-4. Access from your home screen or app drawer
-
-### Browser Bookmark
-- Bookmark the page for quick access
-- Pin the tab for persistent availability
-- Use browser's "Add to Home Screen" feature
-
-## 🔒 Privacy & Security
-
-- **No Data Collection**: All data stays on your device
-- **Local Storage**: Feeds and preferences stored locally
-- **No Tracking**: No analytics or user tracking
-- **Secure Connections**: All external requests use HTTPS
-- **Content Filtering**: Safe content loading with sandboxed iframes
-
-## 🚀 Future Enhancements
-
-### Planned Features
-- **Push Notifications**: Real-time article notifications
-- **Offline Reading**: Enhanced offline article storage
-- **Export/Import**: Backup and restore feed subscriptions
-- **Advanced Filters**: Filter articles by keywords, date, source
-- **Reading Statistics**: Track reading habits and preferences
-- **Social Features**: Share and discover feeds from community
-
-### Technical Improvements
-- **Performance Optimization**: Even faster loading times
-- **Accessibility**: Enhanced screen reader support
-- **More Languages**: Additional language support
-- **Advanced Search**: Full-text search with filters
-- **API Integration**: Support for popular RSS services
-
-## 🤝 Contributing
-
-We welcome contributions! Here's how you can help:
-
-### Language Translations
-- Add support for new languages
-- Improve existing translations
-- Fix translation errors
-
-### Bug Reports
-- Report issues on GitHub
-- Provide detailed reproduction steps
-- Include browser and device information
-
-### Feature Requests
-- Suggest new features
-- Provide use case examples
-- Help prioritize development
-
-## 📄 License
-
-This project is open source and available under the MIT License.
-
-## 🙏 Acknowledgments
-
-- **RSS Community**: For maintaining the RSS standard
-- **Open Source Contributors**: For inspiration and code examples
-- **Beta Testers**: For feedback and bug reports
-- **Translation Contributors**: For multilingual support
-
----
-
-**Made with ❤️ for the RSS community**
-
-*Fluent RSS Reader - Your gateway to organized, multilingual news consumption*
-
-## 📞 Contact
-
-- **Developer**: PsyGioX
-- **Website**: [sergioplay-dev.netlify.app](https://psygiox-dev.vercel.app/)
-- **Version**: 2.0.0
-- **Year**: 2025
-
----
-
-
-### 🌟 Star this project if you find it useful!
-
+`/` — поле добавления ленты · `R` — обновить · `Esc` — закрыть окно

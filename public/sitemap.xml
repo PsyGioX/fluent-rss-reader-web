@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://fluent-rss-reader-web.vercel.app/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-rss-reader-web.vercel.app/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluent-rss-reader-web.vercel.app/en/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-rss-reader-web.vercel.app/uk/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://fluent-rss-reader-web.vercel.app/pl/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://fluent-rss-reader-web.vercel.app/cs/"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://fluent-rss-reader-web.vercel.app/bg/"/>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://fluent-rss-reader-web.vercel.app/sr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-rss-reader-web.vercel.app/"/>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://fluent-rss-reader-web.vercel.app/en/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-rss-reader-web.vercel.app/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluent-rss-reader-web.vercel.app/en/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-rss-reader-web.vercel.app/uk/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://fluent-rss-reader-web.vercel.app/pl/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://fluent-rss-reader-web.vercel.app/cs/"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://fluent-rss-reader-web.vercel.app/bg/"/>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://fluent-rss-reader-web.vercel.app/sr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-rss-reader-web.vercel.app/"/>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fluent-rss-reader-web.vercel.app/uk/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-rss-reader-web.vercel.app/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluent-rss-reader-web.vercel.app/en/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-rss-reader-web.vercel.app/uk/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://fluent-rss-reader-web.vercel.app/pl/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://fluent-rss-reader-web.vercel.app/cs/"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://fluent-rss-reader-web.vercel.app/bg/"/>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://fluent-rss-reader-web.vercel.app/sr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-rss-reader-web.vercel.app/"/>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fluent-rss-reader-web.vercel.app/pl/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-rss-reader-web.vercel.app/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluent-rss-reader-web.vercel.app/en/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-rss-reader-web.vercel.app/uk/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://fluent-rss-reader-web.vercel.app/pl/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://fluent-rss-reader-web.vercel.app/cs/"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://fluent-rss-reader-web.vercel.app/bg/"/>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://fluent-rss-reader-web.vercel.app/sr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-rss-reader-web.vercel.app/"/>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fluent-rss-reader-web.vercel.app/cs/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-rss-reader-web.vercel.app/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluent-rss-reader-web.vercel.app/en/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-rss-reader-web.vercel.app/uk/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://fluent-rss-reader-web.vercel.app/pl/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://fluent-rss-reader-web.vercel.app/cs/"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://fluent-rss-reader-web.vercel.app/bg/"/>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://fluent-rss-reader-web.vercel.app/sr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-rss-reader-web.vercel.app/"/>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fluent-rss-reader-web.vercel.app/bg/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-rss-reader-web.vercel.app/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluent-rss-reader-web.vercel.app/en/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-rss-reader-web.vercel.app/uk/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://fluent-rss-reader-web.vercel.app/pl/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://fluent-rss-reader-web.vercel.app/cs/"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://fluent-rss-reader-web.vercel.app/bg/"/>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://fluent-rss-reader-web.vercel.app/sr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-rss-reader-web.vercel.app/"/>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fluent-rss-reader-web.vercel.app/sr/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://fluent-rss-reader-web.vercel.app/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fluent-rss-reader-web.vercel.app/en/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://fluent-rss-reader-web.vercel.app/uk/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://fluent-rss-reader-web.vercel.app/pl/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://fluent-rss-reader-web.vercel.app/cs/"/>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://fluent-rss-reader-web.vercel.app/bg/"/>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://fluent-rss-reader-web.vercel.app/sr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fluent-rss-reader-web.vercel.app/"/>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

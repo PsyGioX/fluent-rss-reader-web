@@ -1,0 +1,30 @@
+{
+  "name": "fluent-rss-reader-web",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Fluent RSS Reader — pastel pixel-perfect RSS aggregator with serverless feed engine",
+  "type": "module",
+  "engines": {
+    "node": ">=20.x"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/build.mjs && vercel dev",
+    "watch": "node scripts/build.mjs --watch",
+    "preview": "node scripts/build.mjs && npx serve public",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "bootstrap-icons": "^1.11.3",
+    "cheerio": "^1.0.0",
+    "fast-xml-parser": "^4.5.0",
+    "iconv-lite": "^0.6.3",
+    "lru-cache": "^11.0.2",
+    "rss-parser": "^3.13.0",
+    "sanitize-html": "^2.13.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0",
+    "vercel": "^37.0.0"
+  }
+}

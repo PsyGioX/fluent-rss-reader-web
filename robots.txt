@@ -1,7 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /private/
-Disallow: /tmp/
-Disallow: /admin/
-
-Sitemap: https://fluent-rss-reader-web.vercel.app/sitemap.xml
