@@ -21,7 +21,7 @@
     "iconv-lite": "^0.6.3",
     "lru-cache": "^11.0.2",
     "rss-parser": "^3.13.0",
-    "sanitize-html": "^2.13.1"
+    "sanitize-html": "2.16.0"
   },
   "devDependencies": {
     "esbuild": "^0.24.0",
