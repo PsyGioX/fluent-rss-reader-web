@@ -327,12 +327,25 @@
     return grid;
   }
 
-  function emptyState({ title, text, actions = [] }) {
+  function emptyState({ title, text, actions = [], showBrandLogo = false, meta = '', features = [] }) {
     const box = el('div', 'state');
+    const art = showBrandLogo
+      ? '<img class="state__logo" src="/favicon/logo%201.svg" alt="Fluent RSS logo">'
+      : '<div class="state__art" aria-hidden="true"><i class="bi bi-rss"></i></div>';
+    const metaHtml = meta ? `<p class="state__meta">${escapeHtml(meta)}</p>` : '';
+    const featuresHtml = features.length
+      ? `<ul class="state__features">${features
+          .map((feature) => `<li class="state__feature">${escapeHtml(feature)}</li>`)
+          .join('')}</ul>`
+      : '';
+
     box.innerHTML = `
-      <div class="state__art" aria-hidden="true"><i class="bi bi-rss"></i></div>
+      ${art}
       <h2 class="state__title">${escapeHtml(title)}</h2>
-      <p class="state__text">${escapeHtml(text)}</p>`;
+      <p class="state__text">${escapeHtml(text)}</p>
+      ${metaHtml}
+      ${featuresHtml}`;
+
     if (actions.length) {
       const row = el('div', 'state__actions');
       actions.forEach(({ label, primary, onClick }) => {
@@ -406,8 +419,15 @@
     if (!state.feeds.length) {
       content.append(
         emptyState({
-          title: t('no_feeds_message', 'Здесь пока пусто'),
-          text: t('rss_help', 'Вставьте ссылку на сайт — приложение само найдёт RSS-ленту.'),
+          title: t('welcome_title', 'Добро пожаловать в Fluent RSS Reader'),
+          text: t('welcome_text', 'Лёгкий RSS-агрегатор для чтения новостей без лишнего шума.'),
+          meta: `${t('author', 'Автор')}: PsyGioX`,
+          features: [
+            t('welcome_feature_1', 'Собирайте любимые источники в одном месте'),
+            t('welcome_feature_2', 'Группируйте ленты по категориям'),
+            t('welcome_feature_3', 'Импортируйте OPML и читайте офлайн')
+          ],
+          showBrandLogo: true,
           actions: [
             { label: t('recommendations', 'Открыть подборки'), primary: true, onClick: openRecommendations },
             { label: t('import_feeds', 'Импорт OPML'), onClick: openFiles }

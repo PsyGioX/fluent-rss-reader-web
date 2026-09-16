@@ -80,6 +80,11 @@ const translations = {
 
         // Плейсхолдеры и сообщения
         no_feeds_message: "Нет лент для отображения",
+        welcome_title: "Добро пожаловать в Fluent RSS Reader",
+        welcome_text: "Лёгкий RSS-агрегатор для чтения новостей без лишнего шума.",
+        welcome_feature_1: "Собирайте любимые источники в одном месте",
+        welcome_feature_2: "Группируйте ленты по категориям",
+        welcome_feature_3: "Импортируйте OPML и читайте офлайн",
         loading_feed: "Загрузка ленты...",
         feed_load_error: "Ошибка загрузки ленты",
         no_articles: "Нет статей в этой ленте",
@@ -287,6 +292,11 @@ const translations = {
 
         // Placeholders and messages
         no_feeds_message: "No feeds to display",
+        welcome_title: "Welcome to Fluent RSS Reader",
+        welcome_text: "A lightweight RSS reader for catching the news without the clutter.",
+        welcome_feature_1: "Collect your favorite sources in one place",
+        welcome_feature_2: "Group feeds into categories",
+        welcome_feature_3: "Import OPML and read offline",
         loading_feed: "Loading feed...",
         feed_load_error: "Feed loading error",
         no_articles: "No articles in this feed",
@@ -489,6 +499,11 @@ const translations = {
 
         // Заповнювачі та повідомлення
         no_feeds_message: "Немає стрічок для відображення",
+        welcome_title: "Ласкаво просимо до Fluent RSS Reader",
+        welcome_text: "Легкий RSS-агрегатор для читання новин без зайвого шуму.",
+        welcome_feature_1: "Збирайте улюблені джерела в одному місці",
+        welcome_feature_2: "Групуйте стрічки за категоріями",
+        welcome_feature_3: "Імпортуйте OPML і читайте офлайн",
         loading_feed: "Завантаження стрічки...",
         feed_load_error: "Помилка завантаження стрічки",
         no_articles: "Немає статей у цій стрічці",
@@ -658,6 +673,11 @@ const translations = {
 
         // Symbole zastępcze i wiadomości
         no_feeds_message: "Brak kanałów do wyświetlenia",
+        welcome_title: "Witamy w Fluent RSS Reader",
+        welcome_text: "Lekki agregator RSS do czytania wiadomości bez zbędnego hałasu.",
+        welcome_feature_1: "Zbieraj ulubione źródła w jednym miejscu",
+        welcome_feature_2: "Grupuj kanały według kategorii",
+        welcome_feature_3: "Importuj OPML i czytaj offline",
         loading_feed: "Ładowanie kanału...",
         feed_load_error: "Błąd ładowania kanału",
         no_articles: "Brak artykułów w tym kanale",
@@ -826,6 +846,11 @@ const translations = {
 
         // Zástupné symboly a zprávy
         no_feeds_message: "Žádné kanály k zobrazení",
+        welcome_title: "Vítejte v Fluent RSS Reader",
+        welcome_text: "Lehký RSS agregátor pro čtení zpráv bez zbytečného ruchu.",
+        welcome_feature_1: "Sbírejte oblíbené zdroje na jednom místě",
+        welcome_feature_2: "Seskupujte kanály podle kategorií",
+        welcome_feature_3: "Importujte OPML a čtěte offline",
         loading_feed: "Načítání kanálu...",
         feed_load_error: "Chyba načítání kanálu",
         no_articles: "Žádné články v tomto kanálu",
@@ -994,6 +1019,11 @@ const translations = {
 
         // Заместители и съобщения
         no_feeds_message: "Няма емисии за показване",
+        welcome_title: "Добре дошли в Fluent RSS Reader",
+        welcome_text: "Лек RSS агрегатор за четене на новини без излишен шум.",
+        welcome_feature_1: "Събирайте любимите си източници на едно място",
+        welcome_feature_2: "Групирайте емисиите по категории",
+        welcome_feature_3: "Импортирайте OPML и четете офлайн",
         loading_feed: "Зареждане на емисия...",
         feed_load_error: "Грешка при зареждане на емисия",
         no_articles: "Няма статии в тази емисия",
@@ -1162,6 +1192,11 @@ const translations = {
 
         // Zamenski tekst i poruke
         no_feeds_message: "Nema kanala za prikaz",
+        welcome_title: "Dobrodošli u Fluent RSS Reader",
+        welcome_text: "Lak RSS agregator za čitanje vesti bez nepotrebnog šuma.",
+        welcome_feature_1: "Prikupite omiljene izvore na jednom mestu",
+        welcome_feature_2: "Grupisajte kanale po kategorijama",
+        welcome_feature_3: "Uvezite OPML i čitajte offline",
         loading_feed: "Učitavanje kanala...",
         feed_load_error: "Greška pri učitavanju kanala",
         no_articles: "Nema članaka u ovom kanalu",
