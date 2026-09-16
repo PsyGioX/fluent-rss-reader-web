@@ -247,6 +247,13 @@ html[data-theme="dark"] .brand__glyph { color: var(--lavender); }
   object-fit: cover;
   border: 1px solid var(--line);
 }
+.feed-item__icon--fallback {
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-style: normal;
+  color: var(--ink-soft);
+}
 
 .feed-item__text {
   flex: 1 1 auto;

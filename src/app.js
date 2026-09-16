@@ -204,13 +204,17 @@
     select.append(new Option('+ ' + t('create_category', 'Новая категория'), '__new'));
     if (current && [...select.options].some((o) => o.value === current)) select.value = current;
 
-    select.onchange = () => {
+    select.onchange = async () => {
       if (select.value !== '__new') return;
-      const name = prompt(t('category_name', 'Название категории'));
       select.value = list[0];
-      if (!name?.trim()) return;
-      select.append(new Option(name.trim(), name.trim()));
-      select.value = name.trim();
+      const name = await promptModal({
+        title: t('create_category', 'Новая категория'),
+        label: t('category_name', 'Название категории'),
+        confirmLabel: t('add_category_btn', 'Добавить')
+      });
+      if (!name) return;
+      select.append(new Option(name, name));
+      select.value = name;
     };
   }
 
@@ -266,6 +270,17 @@
         <img class="feed-item__icon" alt="" loading="lazy"
              src="https://www.google.com/s2/favicons?sz=64&domain=${encodeURIComponent(hostOf(feed.url))}">
         <span class="feed-item__text">${escapeHtml(feed.title || hostOf(feed.url))}</span>`;
+
+      // Сервис фавиконок иногда не находит иконку для домена (404) —
+      // подменяем сломанную картинку нейтральным значком, а не оставляем «сломанный квадрат».
+      const favicon = item.querySelector('.feed-item__icon');
+      favicon.addEventListener(
+        'error',
+        () => {
+          favicon.replaceWith(el('i', 'feed-item__icon feed-item__icon--fallback bi bi-rss', ''));
+        },
+        { once: true }
+      );
 
       const more = el('button', 'feed-item__more', '<i class="bi bi-three-dots-vertical" aria-hidden="true"></i>');
       more.type = 'button';
@@ -457,8 +472,10 @@
 
   /* ---------- Универсальный шит ---------- */
   let lastFocused = null;
+  let sheetCloseCallback = null; // срабатывает при ЛЮБОМ закрытии: крестик, оверлей, Esc, кнопка
 
   function openSheet({ title, body, tools = [], footer = [], narrow = false }) {
+    sheetCloseCallback = null;
     lastFocused = document.activeElement;
     $('sheetTitle').textContent = title || '';
     const bodyBox = $('sheetBody');
@@ -486,6 +503,11 @@
     document.body.style.overflow = '';
     $('sheetBody').innerHTML = '';
     lastFocused?.focus?.();
+    if (sheetCloseCallback) {
+      const cb = sheetCloseCallback;
+      sheetCloseCallback = null;
+      cb();
+    }
   }
 
   function button(label, { primary, danger, onClick, icon } = {}) {
@@ -495,6 +517,51 @@
     node.onclick = onClick;
     return node;
   }
+
+  /**
+   * Замена системного prompt(): текстовое поле в шите, Promise разрешается
+   * значением при подтверждении или null при отмене — любым способом
+   * (кнопка «Отмена», крестик, клик по фону, Esc).
+   */
+  function promptModal({ title, label, placeholder = '', value = '', confirmLabel } = {}) {
+    return new Promise((resolve) => {
+      const body = el('div');
+      const field = el('label', 'field', label ? `<span class="field__label">${escapeHtml(label)}</span>` : '');
+      const input = el('input');
+      input.type = 'text';
+      input.value = value;
+      input.placeholder = placeholder;
+      field.append(input);
+      body.append(field);
+
+      const submit = () => {
+        resolve(input.value.trim() || null);
+        closeSheet();
+      };
+
+      input.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          submit();
+        }
+      });
+
+      openSheet({
+        title: title || '',
+        body,
+        narrow: true,
+        footer: [
+          button(t('cancel', 'Отмена'), { onClick: () => closeSheet() }),
+          button(confirmLabel || t('save', 'Сохранить'), { primary: true, onClick: submit })
+        ]
+      });
+
+      // Закрытие любым другим способом (крестик, фон, Esc) — отмена
+      sheetCloseCallback = () => resolve(null);
+      setTimeout(() => input.focus(), 30);
+    });
+  }
+
 
   /* ---------- Статья ---------- */
   function openArticle(index) {

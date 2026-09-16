@@ -1,5 +1,5 @@
 import { XMLBuilder, XMLParser } from 'fast-xml-parser';
-import { safeUrl, sendJson } from './_lib.js';
+import { safeUrl, sendJson, withSafety } from './_lib.js';
 
 const parser = new XMLParser({
   ignoreAttributes: false,
@@ -32,7 +32,7 @@ async function readBody(req) {
   return Buffer.concat(chunks).toString('utf8');
 }
 
-export default async function handler(req, res) {
+async function handler(req, res) {
   if (req.method !== 'POST') return sendJson(res, 405, { error: 'method_not_allowed' });
 
   const raw = await readBody(req);
@@ -81,9 +81,10 @@ export default async function handler(req, res) {
           }
         }
       });
+    res.statusCode = 200;
     res.setHeader('Content-Type', 'text/x-opml; charset=utf-8');
     res.setHeader('Content-Disposition', 'attachment; filename="fluent-rss-feeds.opml"');
-    return res.status(200).send(xml);
+    return res.end(xml);
   }
 
   // --- Импорт: OPML/XML -> массив лент ---
@@ -99,3 +100,5 @@ export default async function handler(req, res) {
     return sendJson(res, 422, { error: 'parse_error', message: String(error?.message || error) });
   }
 }
+
+export default withSafety(handler);

@@ -63,6 +63,5 @@
     }
   ],
   "buildCommand": "node scripts/build.mjs",
-  "outputDirectory": "public",
-  "trailingSlash": true
+  "outputDirectory": "public"
 }

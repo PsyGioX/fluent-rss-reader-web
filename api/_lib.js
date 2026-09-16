@@ -124,7 +124,15 @@ export function toPlainText(html, limit = 320) {
   return text.slice(0, limit).replace(/\s+\S*$/, '') + '…';
 }
 
+/**
+ * Ответ и разбор запроса — только через сырое Node http API (res.end,
+ * res.statusCode, req.url). Помощники вида req.query / res.status().send()
+ * Vercel добавляет не всегда — в частности, ненадёжно для ESM-функций
+ * (у нас "type": "module"). Полагаться на них — значит рисковать тем,
+ * что ЛЮБОЙ запрос будет падать с голым 500 ещё до нашего кода.
+ */
 export function sendJson(res, status, payload, cacheSeconds = 0) {
+  res.statusCode = status;
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader(
@@ -133,5 +141,38 @@ export function sendJson(res, status, payload, cacheSeconds = 0) {
       ? `public, s-maxage=${cacheSeconds}, stale-while-revalidate=${cacheSeconds * 4}`
       : 'no-store'
   );
-  res.status(status).send(JSON.stringify(payload));
+  res.end(JSON.stringify(payload));
+}
+
+/** Query-параметры из req.url — работает всегда, в отличие от req.query */
+export function getQuery(req) {
+  try {
+    return Object.fromEntries(new URL(req.url, 'http://localhost').searchParams);
+  } catch {
+    return {};
+  }
+}
+
+/**
+ * Оборачивает обработчик: любое необработанное исключение (в том числе
+ * ошибка импорта зависимости или баг, которого мы не предвидели) превращается
+ * в диагностируемый JSON-ответ 500 вместо непрозрачного краша платформы.
+ */
+export function withSafety(handler) {
+  return async (req, res) => {
+    try {
+      await handler(req, res);
+    } catch (error) {
+      console.error('Необработанная ошибка функции:', error);
+      if (res.writableEnded) return;
+      try {
+        sendJson(res, 500, { error: 'internal_error', message: String(error?.message || error) });
+      } catch {
+        try {
+          res.statusCode = 500;
+          res.end('{"error":"internal_error"}');
+        } catch {}
+      }
+    }
+  };
 }

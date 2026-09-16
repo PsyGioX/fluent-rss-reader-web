@@ -1,5 +1,5 @@
 import * as cheerio from 'cheerio';
-import { cache, fetchWithRetry, safeUrl, sendJson } from './_lib.js';
+import { cache, fetchWithRetry, getQuery, safeUrl, sendJson, withSafety } from './_lib.js';
 
 const COMMON_PATHS = [
   '/rss', '/rss.xml', '/feed', '/feed.xml', '/feeds/posts/default?alt=rss',
@@ -22,8 +22,8 @@ async function probe(url) {
   }
 }
 
-export default async function handler(req, res) {
-  const input = safeUrl(req.query?.url);
+async function handler(req, res) {
+  const input = safeUrl(getQuery(req).url);
   if (!input) return sendJson(res, 400, { error: 'invalid_url' });
 
   const key = 'discover:' + input;
@@ -72,3 +72,5 @@ export default async function handler(req, res) {
   if (payload.ok) cache.set(key, payload);
   return sendJson(res, payload.ok ? 200 : 404, payload, payload.ok ? 600 : 0);
 }
+
+export default withSafety(handler);

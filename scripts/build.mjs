@@ -25,6 +25,8 @@ try {
 }
 
 const hash = (text) => createHash('sha256').update(text).digest('hex').slice(0, 8);
+/** CSP script-src хеш — base64 SHA-256 ровно того текста, что лежит внутри <script> */
+const cspHash = (text) => `'sha256-${createHash('sha256').update(text, 'utf8').digest('base64')}'`;
 
 async function minify(code, loader) {
   if (!esbuild) return code;
@@ -158,6 +160,22 @@ function seoHead(lang, assets) {
     ]
   };
 
+  // Точный текст inline-скрипта — от него же считается CSP-хеш ниже.
+  // Строка должна byte-in-byte совпадать с тем, что попадёт в <script>...</script>.
+  const jsonLdText = JSON.stringify(jsonLd);
+  const csp = [
+    "default-src 'self'",
+    `script-src 'self' ${cspHash(jsonLdText)}`,
+    "style-src 'self' 'unsafe-inline'",
+    "img-src 'self' data: https:",
+    "font-src 'self' data:",
+    "connect-src 'self'",
+    "worker-src 'self'",
+    "frame-src https:",
+    "base-uri 'self'",
+    "form-action 'self'"
+  ].join('; ');
+
   return `<title>${meta.title}</title>
 <meta name="description" content="${meta.description}">
 <meta name="keywords" content="${meta.keywords}">
@@ -168,10 +186,11 @@ function seoHead(lang, assets) {
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#fbfafc" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#17151d" media="(prefers-color-scheme: dark)">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Fluent RSS">
 <meta name="yandex-verification" content="d3afa32d7eb50e33">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; frame-src https:; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="${csp}">
 
 <link rel="canonical" href="${url}">
 ${alternates}
@@ -201,7 +220,7 @@ ${ogLocales}
 <link rel="preload" as="style" href="${assets.icons.path}">
 <link rel="preload" as="script" href="${assets.app.path}">
 
-<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`;
+<script type="application/ld+json">${jsonLdText}</script>`;
 }
 
 /* ---------- Файлы SEO ---------- */

@@ -1,5 +1,5 @@
 import Parser from 'rss-parser';
-import { cache, cleanArticleHtml, fetchWithRetry, safeUrl, sendJson, toPlainText } from './_lib.js';
+import { cache, cleanArticleHtml, fetchWithRetry, getQuery, safeUrl, sendJson, toPlainText, withSafety } from './_lib.js';
 
 const parser = new Parser({
   customFields: {
@@ -45,13 +45,14 @@ function parseJsonFeed(raw) {
   };
 }
 
-export default async function handler(req, res) {
+async function handler(req, res) {
   if (req.method === 'OPTIONS') return sendJson(res, 200, { ok: true });
 
-  const url = safeUrl(req.query?.url);
+  const query = getQuery(req);
+  const url = safeUrl(query.url);
   if (!url) return sendJson(res, 400, { error: 'invalid_url', message: 'Некорректный или запрещённый URL' });
 
-  const fresh = req.query?.fresh === '1';
+  const fresh = query.fresh === '1';
   const key = 'feed:' + url;
   if (!fresh && cache.has(key)) return sendJson(res, 200, { ...cache.get(key), cached: true }, 300);
 
@@ -108,3 +109,5 @@ export default async function handler(req, res) {
     return sendJson(res, status, { error: 'feed_error', message });
   }
 }
+
+export default withSafety(handler);
