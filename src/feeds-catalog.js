@@ -120,6 +120,51 @@ const RECOMMENDED_FEEDS = {
             country: "Катар",
             language: "en",
             quality: 8
+        },
+        {
+            name: "ТАСС",
+            url: "https://tass.ru/rss/v2.xml",
+            domain: "tass.ru",
+            description: "Новости России и мира",
+            country: "Россия",
+            language: "ru",
+            quality: 8
+        },
+        {
+            name: "Интерфакс",
+            url: "https://www.interfax.ru/rss.asp",
+            domain: "interfax.ru",
+            description: "Оперативные новости и аналитика",
+            country: "Россия",
+            language: "ru",
+            quality: 8
+        },
+        {
+            name: "NPR News",
+            url: "https://feeds.npr.org/1001/rss.xml",
+            domain: "npr.org",
+            description: "Новости США и мира",
+            country: "США",
+            language: "en",
+            quality: 9
+        },
+        {
+            name: "The New York Times",
+            url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
+            domain: "nytimes.com",
+            description: "Международные новости",
+            country: "США",
+            language: "en",
+            quality: 9
+        },
+        {
+            name: "The Washington Post",
+            url: "https://feeds.washingtonpost.com/rss/world",
+            domain: "washingtonpost.com",
+            description: "Мировые новости и анализ",
+            country: "США",
+            language: "en",
+            quality: 9
         }
     ],
     "Технологии": [
@@ -196,6 +241,42 @@ const RECOMMENDED_FEEDS = {
             country: "США",
             language: "en",
             quality: 10
+        },
+        {
+            name: "3DNews",
+            url: "https://3dnews.ru/rss/news.xml",
+            domain: "3dnews.ru",
+            description: "Новости компьютерной техники",
+            country: "Россия",
+            language: "ru",
+            quality: 8
+        },
+        {
+            name: "DEV Community",
+            url: "https://dev.to/feed",
+            domain: "dev.to",
+            description: "Практика разработки и программирования",
+            country: "Международный",
+            language: "en",
+            quality: 8
+        },
+        {
+            name: "Hacker News",
+            url: "https://hnrss.org/frontpage",
+            domain: "news.ycombinator.com",
+            description: "Технологии, стартапы и исследования",
+            country: "США",
+            language: "en",
+            quality: 9
+        },
+        {
+            name: "Smashing Magazine",
+            url: "https://www.smashingmagazine.com/feed/",
+            domain: "smashingmagazine.com",
+            description: "Веб-разработка и дизайн",
+            country: "Германия",
+            language: "en",
+            quality: 9
         }
     ],
     "Наука": [
@@ -263,6 +344,33 @@ const RECOMMENDED_FEEDS = {
             country: "США",
             language: "en",
             quality: 8
+        },
+        {
+            name: "NASA Breaking News",
+            url: "https://www.nasa.gov/rss/dyn/breaking_news.rss",
+            domain: "nasa.gov",
+            description: "Космос и научные открытия",
+            country: "США",
+            language: "en",
+            quality: 10
+        },
+        {
+            name: "ScienceDaily",
+            url: "https://www.sciencedaily.com/rss/all.xml",
+            domain: "sciencedaily.com",
+            description: "Новости науки и исследований",
+            country: "США",
+            language: "en",
+            quality: 9
+        },
+        {
+            name: "ESA",
+            url: "https://www.esa.int/rssfeed/Our_Activities/Space_News",
+            domain: "esa.int",
+            description: "Новости Европейского космического агентства",
+            country: "Европа",
+            language: "en",
+            quality: 9
         }
     ],
     "Спорт": [
@@ -318,6 +426,24 @@ const RECOMMENDED_FEEDS = {
             url: "https://www.goal.com/feeds/en/news",
             domain: "goal.com",
             description: "Мировой футбол",
+            country: "Международный",
+            language: "en",
+            quality: 8
+        },
+        {
+            name: "The Guardian Sport",
+            url: "https://www.theguardian.com/sport/rss",
+            domain: "theguardian.com",
+            description: "Мировые спортивные новости",
+            country: "Великобритания",
+            language: "en",
+            quality: 9
+        },
+        {
+            name: "Formula 1",
+            url: "https://www.formula1.com/content/fom-website/en/latest/all.xml",
+            domain: "formula1.com",
+            description: "Новости Формулы-1",
             country: "Международный",
             language: "en",
             quality: 8
@@ -379,6 +505,24 @@ const RECOMMENDED_FEEDS = {
             country: "США",
             language: "en",
             quality: 9
+        },
+        {
+            name: "The Hollywood Reporter",
+            url: "https://www.hollywoodreporter.com/feed/",
+            domain: "hollywoodreporter.com",
+            description: "Кино, телевидение и шоу-бизнес",
+            country: "США",
+            language: "en",
+            quality: 9
+        },
+        {
+            name: "Polygon",
+            url: "https://www.polygon.com/rss/index.xml",
+            domain: "polygon.com",
+            description: "Игры, кино и поп-культура",
+            country: "США",
+            language: "en",
+            quality: 8
         }
     ],
     "Экономика": [
@@ -437,6 +581,33 @@ const RECOMMENDED_FEEDS = {
             country: "Великобритания",
             language: "en",
             quality: 10
+        },
+        {
+            name: "CNBC",
+            url: "https://www.cnbc.com/id/100003114/device/rss/rss.html",
+            domain: "cnbc.com",
+            description: "Финансовые рынки и бизнес",
+            country: "США",
+            language: "en",
+            quality: 9
+        },
+        {
+            name: "Yahoo Finance",
+            url: "https://finance.yahoo.com/news/rssindex",
+            domain: "finance.yahoo.com",
+            description: "Финансовые новости и рынки",
+            country: "США",
+            language: "en",
+            quality: 8
+        },
+        {
+            name: "CoinDesk",
+            url: "https://www.coindesk.com/arc/outboundfeeds/rss/",
+            domain: "coindesk.com",
+            description: "Криптовалюты и цифровые активы",
+            country: "США",
+            language: "en",
+            quality: 8
         }
     ],
     "Здоровье": [
@@ -466,6 +637,24 @@ const RECOMMENDED_FEEDS = {
             country: "США",
             language: "en",
             quality: 8
+        },
+        {
+            name: "WHO News",
+            url: "https://www.who.int/rss-feeds/news-english.xml",
+            domain: "who.int",
+            description: "Новости Всемирной организации здравоохранения",
+            country: "Международный",
+            language: "en",
+            quality: 10
+        },
+        {
+            name: "NIH Research Matters",
+            url: "https://www.nih.gov/news-events/nih-research-matters/feed",
+            domain: "nih.gov",
+            description: "Медицинские исследования",
+            country: "США",
+            language: "en",
+            quality: 9
         }
     ],
     "Экология": [
@@ -495,6 +684,24 @@ const RECOMMENDED_FEEDS = {
             country: "США",
             language: "en",
             quality: 8
+        },
+        {
+            name: "Mongabay",
+            url: "https://news.mongabay.com/feed/",
+            domain: "mongabay.com",
+            description: "Природа, климат и биоразнообразие",
+            country: "США",
+            language: "en",
+            quality: 9
+        },
+        {
+            name: "NASA Climate",
+            url: "https://climate.nasa.gov/news/rss.xml",
+            domain: "climate.nasa.gov",
+            description: "Климат и изменения окружающей среды",
+            country: "США",
+            language: "en",
+            quality: 9
         }
     ]
 };

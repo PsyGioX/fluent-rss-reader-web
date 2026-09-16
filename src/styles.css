@@ -44,7 +44,7 @@
   --shadow-pop: 0 2px 4px rgba(46, 38, 66, 0.04), 0 12px 32px rgba(46, 38, 66, 0.1);
   --shadow-sheet: 0 -4px 40px rgba(46, 38, 66, 0.14);
 
-  --rail: 272px;
+  --rail: 304px;
   --topbar: 64px;
   --ease: cubic-bezier(0.32, 0.72, 0, 1);
 
@@ -289,6 +289,8 @@ html[data-theme="dark"] .brand__glyph { color: var(--lavender); }
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 6px;
 }
+.rail__foot .btn { min-width: 0; padding-inline: 8px; }
+.rail__foot #btnRecommend { grid-column: 1 / -1; }
 
 /* ---------- Правая колонка ---------- */
 .main { min-width: 0; display: flex; flex-direction: column; }
