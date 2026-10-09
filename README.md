@@ -1,5 +1,7 @@
 # Fluent RSS Reader 2.0
 
+![Главная страница сайта](https://github.com/PsyGioX/fluent-rss-reader-web/blob/main/screenshot_main.png?raw=true)
+
 Пастельный, «пиксель-перфект» RSS-агрегатор. Фронтенд без сборки + serverless-бэкенд на Vercel.
 
 ## Что изменилось по сравнению с 1.x
